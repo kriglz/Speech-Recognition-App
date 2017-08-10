@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ListenToMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tell me a number:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92D-7W-5aw">
+                                <rect key="frame" x="84.5" y="129" width="151" height="23"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="hRt-s4-Upm">
+                                <rect key="frame" x="65.5" y="368" width="189" height="52"/>
+                                <color key="backgroundColor" red="0.98031407594680786" green="0.63016897439956665" blue="0.64981228113174438" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="189" id="BPY-Rd-tvs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="34"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="start">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="activateSpeechRecognition:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xZZ-zZ-kvi"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="This is a UITextView" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f3p-Ix-tn5">
+                                <rect key="frame" x="60" y="220" width="200" height="100"/>
+                                <color key="backgroundColor" red="0.54703438282012939" green="0.79242551326751709" blue="0.86611932516098022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="N0s-Bj-ykv"/>
+                                    <constraint firstAttribute="height" constant="100" id="uw5-5r-ya9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="f3p-Ix-tn5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4VL-4u-isM"/>
+                            <constraint firstItem="hRt-s4-Upm" firstAttribute="top" secondItem="f3p-Ix-tn5" secondAttribute="bottom" constant="48" id="4cH-IG-pTQ"/>
+                            <constraint firstItem="92D-7W-5aw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Byl-kE-lT3"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hRt-s4-Upm" secondAttribute="bottom" constant="60" id="RxX-3a-NjQ"/>
+                            <constraint firstItem="f3p-Ix-tn5" firstAttribute="top" secondItem="92D-7W-5aw" secondAttribute="bottom" constant="68" id="r2P-Pv-uha"/>
+                            <constraint firstItem="hRt-s4-Upm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tS9-sj-am0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="microphonebutton" destination="hRt-s4-Upm" id="NFp-lW-yw9"/>
+                        <outlet property="textView" destination="f3p-Ix-tn5" id="jkj-X8-cmM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="138.98050974512745"/>
+        </scene>
+    </scenes>
+</document>
