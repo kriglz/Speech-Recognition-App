@@ -9,9 +9,30 @@
 import UIKit
 import Speech
 
+extension UILabel {
+    
+    func animate(newText: String, characterDelay: TimeInterval) {
+        
+        DispatchQueue.main.async {
+            
+            self.text = ""
+            
+            for (index, character) in newText.characters.enumerated() {
+                DispatchQueue.main.asyncAfter(deadline: .now() + characterDelay * Double(index)) {
+                    self.text?.append(character)
+                }
+            }
+        }
+    }
+}
+
+
+
+
 class ViewController: UIViewController, SFSpeechRecognizerDelegate {
 
     
+    @IBOutlet weak var intoLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var microphonebutton: UIButton!
     
@@ -19,6 +40,8 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         super.viewDidLoad()
         microphonebutton.isEnabled = false
         speechRecognizer?.delegate = self
+        
+        intoLabel.animate(newText: "Hello, stranger. Please, talk to me...", characterDelay: 0.07)
         
         SFSpeechRecognizer.requestAuthorization{ authStatus in
             var isButtonEnabled = false
@@ -49,10 +72,15 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
             audioEngine.stop()
             recognitionRequest?.endAudio()
             microphonebutton.isEnabled = false
-            microphonebutton.setTitle("Start Recording", for: .normal)
+            microphonebutton.setTitle("🗣", for: .normal)
+            let color = UIColor(colorLiteralRed: 213/255, green: 228/255, blue: 235/255, alpha: 1)
+            microphonebutton.backgroundColor = color
+
         } else {
             startRecording()
-            microphonebutton.setTitle("Stop Recording", for: .normal)
+            microphonebutton.setTitle("⚫️", for: .normal)
+            microphonebutton.backgroundColor = .red
+
         }
         
     }
@@ -98,6 +126,10 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
             var isFinal = false
             if result != nil {
                 self.textView.text = result?.bestTranscription.formattedString
+                
+                let range = NSMakeRange(self.textView.text.characters.count - 1, 0)
+                self.textView.scrollRangeToVisible(range)
+                
                 isFinal = (result?.isFinal)!
             }
             if error != nil || isFinal {
@@ -124,7 +156,8 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
             print("audioEngine couldn't start because of an error.")
         }
         
-        textView.text = "Say something, I'm listening!"
+        textView.font = UIFont(name: "American Typewriter", size: 16)
+        textView.text = "I'm listening!"
     }
     
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {

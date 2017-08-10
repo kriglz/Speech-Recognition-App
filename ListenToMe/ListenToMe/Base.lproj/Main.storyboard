@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina3_5" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,59 +19,76 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tell me a number:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92D-7W-5aw">
-                                <rect key="frame" x="84.5" y="129" width="151" height="23"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="19"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92D-7W-5aw">
+                                <rect key="frame" x="90" y="49" width="235" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="HnY-aX-Euh"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Hello, stranger. Please talk to me">
+                                        <attributes>
+                                            <font key="NSFont" size="15" name="AmericanTypewriter"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="hRt-s4-Upm">
-                                <rect key="frame" x="65.5" y="368" width="189" height="52"/>
-                                <color key="backgroundColor" red="0.98031407594680786" green="0.63016897439956665" blue="0.64981228113174438" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" editable="NO" text=" " selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3p-Ix-tn5">
+                                <rect key="frame" x="31" y="126" width="350" height="484"/>
+                                <color key="backgroundColor" red="0.54703438282012939" green="0.79242551326751709" blue="0.86611932516098022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="189" id="BPY-Rd-tvs"/>
+                                    <constraint firstAttribute="width" secondItem="f3p-Ix-tn5" secondAttribute="height" multiplier="75:121" constant="50" id="B2d-mI-fea"/>
+                                    <constraint firstAttribute="height" constant="484" id="dMM-GY-swc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="12"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="hRt-s4-Upm">
+                                <rect key="frame" x="157" y="636" width="100" height="80"/>
+                                <color key="backgroundColor" cyan="0.15503577060169643" magenta="0.036128397617075175" yellow="0.013073540292680264" black="0.0" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="6hc-9X-Btp"/>
+                                    <constraint firstAttribute="width" constant="100" id="BPY-Rd-tvs"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="34"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="start">
+                                <state key="normal" title="🗣">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="27"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="activateSpeechRecognition:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xZZ-zZ-kvi"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="This is a UITextView" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f3p-Ix-tn5">
-                                <rect key="frame" x="60" y="220" width="200" height="100"/>
-                                <color key="backgroundColor" red="0.54703438282012939" green="0.79242551326751709" blue="0.86611932516098022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="N0s-Bj-ykv"/>
-                                    <constraint firstAttribute="height" constant="100" id="uw5-5r-ya9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="f3p-Ix-tn5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4VL-4u-isM"/>
-                            <constraint firstItem="hRt-s4-Upm" firstAttribute="top" secondItem="f3p-Ix-tn5" secondAttribute="bottom" constant="48" id="4cH-IG-pTQ"/>
-                            <constraint firstItem="92D-7W-5aw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Byl-kE-lT3"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hRt-s4-Upm" secondAttribute="bottom" constant="60" id="RxX-3a-NjQ"/>
-                            <constraint firstItem="f3p-Ix-tn5" firstAttribute="top" secondItem="92D-7W-5aw" secondAttribute="bottom" constant="68" id="r2P-Pv-uha"/>
+                            <constraint firstItem="92D-7W-5aw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="La7-FV-oDT"/>
+                            <constraint firstItem="f3p-Ix-tn5" firstAttribute="centerX" secondItem="92D-7W-5aw" secondAttribute="centerX" constant="-1.8" id="PuT-ml-BA2"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hRt-s4-Upm" secondAttribute="bottom" constant="20" id="RxX-3a-NjQ"/>
+                            <constraint firstItem="f3p-Ix-tn5" firstAttribute="top" secondItem="92D-7W-5aw" secondAttribute="bottom" constant="22" id="Yb6-9H-QuF"/>
+                            <constraint firstItem="hRt-s4-Upm" firstAttribute="top" secondItem="f3p-Ix-tn5" secondAttribute="bottom" constant="26" id="aNM-kD-yj3"/>
+                            <constraint firstItem="92D-7W-5aw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="29" id="cYb-66-Y8n"/>
                             <constraint firstItem="hRt-s4-Upm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tS9-sj-am0"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="intoLabel" destination="92D-7W-5aw" id="w6a-ez-yQ4"/>
                         <outlet property="microphonebutton" destination="hRt-s4-Upm" id="NFp-lW-yw9"/>
                         <outlet property="textView" destination="f3p-Ix-tn5" id="jkj-X8-cmM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="138.98050974512745"/>
+            <point key="canvasLocation" x="138.75" y="138.75"/>
         </scene>
     </scenes>
 </document>
