@@ -64,7 +64,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
                 self.microphonebutton.isEnabled = isButtonEnabled
             }
         }
-        intoLabel.animate(newText: "Hello, stranger. Please, talk to me.", characterDelay: 0.07)
+        intoLabel.animate(newText: "Hello, stranger. Please, talk to me. You can change background color by using RGB colors or go back to original one by reseting it.", characterDelay: 0.07)
 
     }
     
@@ -128,13 +128,22 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         
         recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: {(result, error) in
             var isFinal = false
-            if result != nil {
-                self.textView.text = result?.bestTranscription.formattedString
+            if let result = result {
+                let transcriptedString = result.bestTranscription.formattedString
+                self.textView.text = transcriptedString
                 
                 let range = NSMakeRange(self.textView.text.characters.count - 1, 0)
                 self.textView.scrollRangeToVisible(range)
                 
-                isFinal = (result?.isFinal)!
+                var lastString: String = ""
+                for segment in result.bestTranscription.segments {
+                    let segmentIndex = transcriptedString.index(transcriptedString.startIndex, offsetBy: segment.substringRange.location)
+                    lastString = transcriptedString.substring(from: segmentIndex)
+                }
+                self.adjustTheColor(using: lastString)
+                
+                
+                isFinal = (result.isFinal)
             }
             if error != nil || isFinal {
                 self.audioEngine.stop()
@@ -177,6 +186,39 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         }
     }
     
+    
+    var currentColor = UIColor(colorLiteralRed: 213/255, green: 228/255, blue: 235/255, alpha: 1)
+    var redCoefficient: Float = 213/255
+    var greenCoefficient: Float = 228/255
+    var blueCoefficient: Float = 235/255
+
+    
+    func adjustTheColor(using userColor: String) {
+        print(userColor)
+        switch userColor {
+        case "red", "Red":
+            redCoefficient -= 10/255
+            textView.backgroundColor = UIColor(colorLiteralRed: redCoefficient, green: greenCoefficient, blue: blueCoefficient, alpha: 1)
+
+            
+        case "blue", "Blue":
+            blueCoefficient -= 10/255
+            textView.backgroundColor = UIColor(colorLiteralRed: redCoefficient, green: greenCoefficient, blue: blueCoefficient, alpha: 1)
+
+            
+        case "green", "Green":
+            greenCoefficient -= 10/255
+            textView.backgroundColor = UIColor(colorLiteralRed: redCoefficient, green: greenCoefficient, blue: blueCoefficient, alpha: 1)
+
+            
+        case "reset", "Reset":
+            textView.backgroundColor = UIColor(colorLiteralRed: 240/255, green: 187/255, blue: 199/255, alpha: 1)
+
+        default:
+            break
+        }
+
+    }
     
 }
 
