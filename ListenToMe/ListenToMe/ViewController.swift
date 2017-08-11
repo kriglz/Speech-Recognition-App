@@ -41,7 +41,6 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         microphonebutton.isEnabled = false
         speechRecognizer?.delegate = self
         
-        intoLabel.animate(newText: "Hello, stranger. Please, talk to me...", characterDelay: 0.07)
         
         SFSpeechRecognizer.requestAuthorization{ authStatus in
             var isButtonEnabled = false
@@ -65,6 +64,8 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
                 self.microphonebutton.isEnabled = isButtonEnabled
             }
         }
+        intoLabel.animate(newText: "Hello, stranger. Please, talk to me.", characterDelay: 0.07)
+
     }
     
     @IBAction func activateSpeechRecognition(_ sender: Any) {
@@ -79,7 +80,8 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         } else {
             startRecording()
             microphonebutton.setTitle("⚫️", for: .normal)
-            microphonebutton.backgroundColor = .red
+            let color = UIColor(colorLiteralRed: 211/255, green: 0/255, blue: 71/255, alpha: 1)
+            microphonebutton.backgroundColor = color
 
         }
         
