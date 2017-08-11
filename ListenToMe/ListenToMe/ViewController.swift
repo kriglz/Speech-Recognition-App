@@ -96,11 +96,13 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     
     
+    
     func startRecording() {
         if recognitionTask != nil {
             recognitionTask?.cancel()
             recognitionTask = nil
         }
+        
         
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -142,6 +144,11 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
                 self.recognitionTask = nil
                 
                 self.microphonebutton.isEnabled = true
+                
+                self.microphonebutton.setTitle("🗣", for: .normal)
+                let color = UIColor(colorLiteralRed: 213/255, green: 228/255, blue: 235/255, alpha: 1)
+                self.microphonebutton.backgroundColor = color
+
             }
         })
         
