@@ -123,7 +123,6 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
             fatalError("Unable to create an SFSpeechAudioBufferRecognitionRequest object")
         }
         
-        
         recognitionRequest.shouldReportPartialResults = true
         
         recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: {(result, error) in
@@ -132,16 +131,18 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
                 let transcriptedString = result.bestTranscription.formattedString
                 self.textView.text = transcriptedString
                 
+                //continuous auto scrolling
                 let range = NSMakeRange(self.textView.text.characters.count - 1, 0)
                 self.textView.scrollRangeToVisible(range)
                 
+                //background color changing function
                 var lastString: String = ""
                 for segment in result.bestTranscription.segments {
                     let segmentIndex = transcriptedString.index(transcriptedString.startIndex, offsetBy: segment.substringRange.location)
                     lastString = transcriptedString.substring(from: segmentIndex)
                 }
                 self.adjustTheColor(using: lastString)
-                
+
                 
                 isFinal = (result.isFinal)
             }
